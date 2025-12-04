@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  nexgen-erp:
+    container_name: nexgen-erp
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nexgen_data:/app/data
+    environment:
+      - NODE_ENV=production
+      - ENABLE_WHATSAPP=true
+      - DATA_DIR=/app/data
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
